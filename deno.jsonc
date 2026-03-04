@@ -1,0 +1,12 @@
+{
+  "imports": {
+    "@astral/astral": "jsr:@astral/astral@^0.5.5",
+    "@modelcontextprotocol/sdk/server/mcp.js": "npm:@modelcontextprotocol/sdk@^1.0.1/server/mcp.js",
+    "@modelcontextprotocol/sdk/server/stdio.js": "npm:@modelcontextprotocol/sdk@^1.0.1/server/stdio.js",
+    "@std/encoding/base64": "jsr:@std/encoding@1/base64",
+    "zod": "npm:zod@^3.25"
+  },
+  "tasks": {
+    "start": "deno run -A main.ts"
+  }
+}
