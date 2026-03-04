@@ -11,6 +11,27 @@ deno compile -A -o astral-mcp main.ts
 
 Place the resulting binary somewhere on your `PATH`.
 
+### Cross-compilation
+
+Deno can produce binaries for other platforms via `--target`:
+
+```sh
+# Linux (x64)
+deno compile -A --target x86_64-unknown-linux-gnu -o astral-mcp-linux-x64 main.ts
+
+# Linux (ARM64)
+deno compile -A --target aarch64-unknown-linux-gnu -o astral-mcp-linux-arm64 main.ts
+
+# macOS (Apple Silicon)
+deno compile -A --target aarch64-apple-darwin -o astral-mcp-macos-arm64 main.ts
+
+# macOS (Intel)
+deno compile -A --target x86_64-apple-darwin -o astral-mcp-macos-x64 main.ts
+
+# Windows (x64)
+deno compile -A --target x86_64-pc-windows-msvc -o astral-mcp-windows-x64.exe main.ts
+```
+
 ## Configure
 
 Add an entry to your Claude Code `settings.json`:
