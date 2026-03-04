@@ -1,7 +1,7 @@
 # astral-mcp
 
 MCP server providing headless browser tools via
-[Astral](https://github.com/nicovrc/astral)/CDP.
+[Astral](https://github.com/lino-levan/astral/)/CDP.
 
 ## Install
 
