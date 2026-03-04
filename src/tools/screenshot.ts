@@ -7,15 +7,21 @@ export function registerScreenshotTools(server: McpServer, session: Session) {
   server.registerTool("screenshot", {
     title: "Take Screenshot",
     description:
-      "Capture a screenshot of the page or a specific element. Returns the image as PNG. When a selector is provided, only that element is captured.",
+      "Capture a screenshot of the page or a specific element. Returns the image as PNG. When a selector is provided, only that element is captured. Use fullPage to capture the entire scrollable page.",
     inputSchema: {
       selector: z
         .string()
         .optional()
         .describe("CSS selector of element to screenshot. Omit for full page."),
+      fullPage: z
+        .boolean()
+        .optional()
+        .describe(
+          "Capture the entire scrollable page, not just the viewport.",
+        ),
       pageId: z.number().optional(),
     },
-  }, async ({ selector, pageId }) => {
+  }, async ({ selector, fullPage, pageId }) => {
     try {
       const tracked = await session.getPage(pageId);
       await tracked.page.bringToFront();
@@ -34,7 +40,7 @@ export function registerScreenshotTools(server: McpServer, session: Session) {
         }
         imageBytes = await el.screenshot();
       } else {
-        imageBytes = await tracked.page.screenshot();
+        imageBytes = await tracked.page.screenshot({ fullPage });
       }
 
       const base64 = encodeBase64(imageBytes);
